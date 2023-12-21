@@ -1,8 +1,6 @@
 #A simple calculator that performs basic arithmetic operations (addition, subtraction, multiplication, division).
 import sys
 
-import sys
-
 def add(x, y):
     return x + y
 
