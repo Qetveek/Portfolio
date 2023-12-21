@@ -1,4 +1,6 @@
-#Простой калькулятор, который выполняет основные арифметические операции (сложение, вычитание, умножение, деление).
+#A simple calculator that performs basic arithmetic operations (addition, subtraction, multiplication, division).
+import sys
+
 import sys
 
 def add(x, y):
@@ -17,22 +19,32 @@ def divide(x, y):
     else:
         return x / y
 
-x = float(input("Пожалуйста, введите первое число: "))
-operator = input("Выберите операцию +, -, *, /: ")
-y = float(input("Пожалуйста, введите второе число: "))
+while True:
+    try:
+        x = float(input("Пожалуйста, введите первое число: "))
+        y = float(input("Пожалуйста, введите второе число: "))
+    except ValueError:
+        print("Ошибка: Введите корректное числовое значение.")
+        sys.exit()
 
-if operator not in ['+', '-', '*', '/']:
-    print("Ошибка: Некорректный оператор")
-    sys.exit()
+    operator = input("Выберите операцию +, -, *, /: ")
+    if operator not in ['+', '-', '*', '/']:
+        print("Ошибка: Некорректный оператор")
+        sys.exit()
 
-if operator == "+":
-    result = add(x, y)
-elif operator == "-":
-    result = subtract(x, y)
-elif operator == "*":
-    result = multiply(x, y)
-elif operator == "/": 
-    result = divide(x, y)
+    if operator == "+":
+        result = add(x, y)
+    elif operator == "-":
+        result = subtract(x, y)
+    elif operator == "*":
+        result = multiply(x, y)
+    elif operator == "/": 
+        result = divide(x, y)
 
-print(f"Результат: {result:.2f}")
+    precision = int(input("Введите количество знаков после запятой: "))
+    print(f"Результат: {result:.{precision}f}")
+
+    another_calculation = input("Хотите выполнить еще одну операцию? (да/нет): ")
+    if another_calculation.lower() != 'да':
+        break
 
